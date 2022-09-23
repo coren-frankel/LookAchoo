@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const SniffleSchema = new mongoose.Schema({
     location : {
-        city : {type: String, required: true},
-        region : {type: String, required: true},
+        city : {type: String, required: false},
+        region : {type: String, required: false},
         lat : {type: String, required: true},
-        lon : {type: String, required: true}
+        lon : {type: String, required: true},
+        country : {type: String, required: true}
     },
     tickles : {
         smoke: {type: Number, required: true},

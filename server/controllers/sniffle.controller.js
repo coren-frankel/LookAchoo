@@ -20,7 +20,7 @@ module.exports.logNewSniffle = (req, res) => {
         }
     };//RETRIEVE LOCATION DATA FROM IP ADDRESS
     axios.request(options).then(resp => {
-        const {lat , lon, region, city } = resp.data;
+        const {lat , lon, region, city, country_name } = resp.data;
         console.log(`Lattitude: ${lat} Longitude: ${lon}`)
         let fields = [
             "grassGrassIndex", "grassIndex", "humidity", 
@@ -46,7 +46,8 @@ module.exports.logNewSniffle = (req, res) => {
                         city: city,
                         region: region,
                         lat: lat,
-                        lon: lon
+                        lon: lon,
+                        country: country_name
                     },
                     tickles : {
                         smoke: cond.wildfireSmokeIndex,
@@ -84,5 +85,10 @@ module.exports.logNewSniffle = (req, res) => {
 module.exports.getSniffle = (req, res) => {
     Sniffle.findOne({ _id: req.params.id })
         .then(sniffle => res.json(sniffle))
+        .catch(err => res.json(err));
+}
+module.exports.getRandom = (req, res) => {
+    Sniffle.aggregate([{$sample: { size: 5 } }])
+        .then(sniffles => res.json(sniffles))
         .catch(err => res.json(err));
 }
