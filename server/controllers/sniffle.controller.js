@@ -20,7 +20,8 @@ module.exports.logNewSniffle = (req, res) => {
         }
     };//RETRIEVE LOCATION DATA FROM IP ADDRESS
     axios.request(options).then(resp => {
-        const {lat , lon, region, city, country_name } = resp.data;
+        console.log(resp.data)
+        const {lat , lon, region, city, country_name, localtime, country_code } = resp.data;
         console.log(`Lattitude: ${lat} Longitude: ${lon}`)
         let fields = [
             "grassGrassIndex", "grassIndex", "humidity", 
@@ -39,7 +40,7 @@ module.exports.logNewSniffle = (req, res) => {
         }
         axios.get(`https://api.tomorrow.io/v4/timelines?location=${location}&fields=${fields}&units=${units}`, opts)
             .then(respo => {
-                console.log(respo.data.data.timelines[0].intervals[0].values)
+                // console.log(respo.data.data.timelines[0].intervals[0].values)
                 const cond = respo.data.data.timelines[0].intervals[0].values
                 Sniffle.create({
                     location : {
@@ -47,7 +48,9 @@ module.exports.logNewSniffle = (req, res) => {
                         region: region,
                         lat: lat,
                         lon: lon,
-                        country: country_name
+                        country: country_name,
+                        iso2: country_code,
+                        localtime: localtime
                     },
                     tickles : {
                         smoke: cond.wildfireSmokeIndex,
@@ -79,7 +82,7 @@ module.exports.logNewSniffle = (req, res) => {
             })
     }).catch(err => {
         console.error(err)
-        console.log("Weather API failed to locate IP Adress")
+        console.log("Weather API failed to locate IP Address")
     });
 }
 module.exports.getSniffle = (req, res) => {
@@ -88,7 +91,7 @@ module.exports.getSniffle = (req, res) => {
         .catch(err => res.json(err));
 }
 module.exports.getRandom = (req, res) => {
-    Sniffle.aggregate([{$sample: { size: 5 } }])
+    Sniffle.aggregate([{$sample: { size: 10 } }])
         .then(sniffles => res.json(sniffles))
         .catch(err => res.json(err));
 }

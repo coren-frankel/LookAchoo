@@ -6,7 +6,9 @@ const SniffleSchema = new mongoose.Schema({
         region : {type: String, required: false},
         lat : {type: String, required: true},
         lon : {type: String, required: true},
-        country : {type: String, required: true}
+        country : {type: String, required: true},
+        localtime : {type: Date, required: false },
+        iso2: {type:String, required:false}
     },
     tickles : {
         smoke: {type: Number, required: true},
