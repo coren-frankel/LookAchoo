@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Box, Button, Typography, Paper } from '@mui/material';
+import { 
+    Box, Button, Typography, Paper
+} from '@mui/material';
 import Carousel from 'react-material-ui-carousel'
 import fern from '../assets/video/fern.mp4'
 import autumn from '../assets/video/autumn.mp4'
@@ -14,10 +16,12 @@ import breeze from '../assets/video/breeze.mp4'
 import pollen from '../assets/video/pollen.mp4'
 import Header from '../components/Header'
 import SniffleBlurb from '../components/SniffleBlurb';
+import Disclaimer from '../components/Disclaimer';
 
 const vidList = [fern, autumn, wild, pollen, breeze, falls, beach, grass]
 const random = Math.floor(Math.random() * vidList.length)
 const bg = vidList[random]
+
 
 
 const Index = () => {
@@ -28,12 +32,12 @@ const Index = () => {
     useEffect(() => {//RETRIEVE USER IP ADDRESS ON LOAD
         const fetchData = async => {
             try {
-                axios.all([
-                    axios.get('https://api.ipify.org?format=json'),
+                axios.all([//MULTIPLE CALLS AT ONCE! COOL UPGRADE!
+                    axios.get('https://api64.ipify.org?format=json'),//IP4 & IP6 IP ADDRESS RETRIEVAL
                     axios.get('http://localhost:8000/api/sniffle/random')
                 ]).then(
                     axios.spread((ip4, res) => {
-                        setUserIP(ip4.data.ip)//COMMENTED OUT FOR TESTING PURPOSES
+                        setUserIP(ip4.data.ip)//COMMENT OUT FOR TESTING PURPOSES
                         // console.log(ip4.data.ip)
                         setSniffles(res.data)
                     })
@@ -44,15 +48,16 @@ const Index = () => {
                 for (const key of Object.keys(errorResponse)) {
                     console.log(errorResponse[key].message)
                 }
+                window.alert('Something went wrong! Refresh the page')
             }
         }
         fetchData(1)
     }, [])
     const getLocation = () => {
-        clicked ? null : 
-        setClicked(true)
+        clicked ? null ://LIMIT OVERCLICKING WHILE PROCESSING REQUEST
+            setClicked(true)
         userIP ?
-            axios.post('http://localhost:8000/api/sniffle/new', {ip :userIP})
+            axios.post('http://localhost:8000/api/sniffle/new', { ip: userIP })
                 .then(newSniffle => navigate(`/${newSniffle.data._id}`))
                 .catch(err => {
                     const errorResponse = err.response.data.errors;
@@ -60,38 +65,39 @@ const Index = () => {
                         console.log(errorResponse[key].message)
                     }
                     window.alert("Ahh! Ya lost it!\nLookAchoo wasn't able to get location data\nbased on the IP Address you are using\nUsing a VPN will skew location results")
-                }) 
+                })
             : window.alert("No IP Address, no workee...")
     }
     return (
         <>
+                {/* VIDEO BACKGROUND */}
             <video playsInline autoPlay muted loop id='myVid'>
                 <source src={bg} type='video/mp4' />
             </video>
-            <Header />
+            <Header info={false}/>
             <Box sx={{ height: '70vh' }} >
-                <Typography variant="h6" bgcolor={"#95bf74"} color={"#283f3b"} style={{margin: '0'}}>
-                    {userIP ? `Your IP address has been logged as: ${userIP}` : "Fetching IP Address..."}
+                <Typography variant="" bgcolor={"#95bf74"} color={"#283f3b"} sx={{ display: 'inline-block' }}>
+                    "Sneezes manifest from many causes and almost always from noses." - Unknown
                 </Typography>
-                <Carousel stopAutoPlayOnHover="true" animation='slide' duration={1000} height={350}>
-                {
-                    sniffles.map( (sniff, i) => <SniffleBlurb key={i} sniff={sniff}/> )
-                }
+                <Carousel stopAutoPlayOnHover="true" animation='slide' duration={1000} height={300}>
+                    {
+                        sniffles.map((sniff, i) => <SniffleBlurb key={i} sniff={sniff} />)
+                    }
                 </Carousel>
             </Box>
-            
-            <Box sx={{ height: '10vh' }}>
-                <Button variant="contained" size="medium" style={{ margin: "1rem", backgroundColor: '#659b5e' }} onClick={getLocation}>{ clicked ? <CircularProgress sx={{height: '1rem', color: "grey.500"}}/> : "*achoo*"}</Button>
-                <br/>
-                <Paper elevation={4}  sx={{display: 'inline-block', backgroundColor: "#556f44"}}>
-                <Typography variant="caption" color={'#99ddc8'}>
-                    **sneeze to discover what may be tickling your nose locally**
-                </Typography><br />
+            <Box sx={{ height: '20vh' }}>
+                <Button variant="contained" size="medium" style={{ margin: "1rem", backgroundColor: '#659b5e', color: '#283f3b' }} onClick={getLocation}>{clicked ? <CircularProgress sx={{ height: '1rem', color: "grey.500" }} /> : "*achoo*"}</Button>
+                <br />
+                <Paper elevation={4} sx={{ display: 'inline-block', backgroundColor: "#556f44" }}>
+                    <Typography variant="caption" color={'#99ddc8'}>
+                        **sneeze to discover what may be tickling your nose locally**
+                    </Typography><br />
                 </Paper>
             </Box>
+            <Disclaimer userIP={userIP}/>
         </>
     )
-    
+
 }
 
 export default Index

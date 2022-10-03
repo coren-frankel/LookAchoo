@@ -5,7 +5,7 @@ import Header from '../components/Header'
 const Results = () => {
     return (
         <>
-            <Header />
+            <Header info={false}/>
             <ResultMeter />
         </>
     )
