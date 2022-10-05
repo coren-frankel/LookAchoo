@@ -1,7 +1,10 @@
+require('dotenv').config
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/achoo_db', {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    // useCreateIndex: true,
+    // useFindAndModify: false,
 })
     .then(() => console.log('Established a connection to the database'))
     .catch(err => console.log('Something went wrong when connecting to the database', err));
