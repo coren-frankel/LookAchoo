@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardMedia, Typography } from '@mui/material'
+import { Card, Typography } from '@mui/material'
 
 const WhatSneeze = () => {
     return (
@@ -10,7 +10,7 @@ const WhatSneeze = () => {
                 "Allergic rhinitis (hay fever) is an allergic reaction to tiny particles in the air called allergens. When you breathe in allergens through your nose or mouth, your body reacts by releasing a natural chemical called histamine. Several indoor and outdoor allergens cause hay fever."<sup>3</sup>
             </blockquote>
             <Typography component='div' style={{display: 'flex'}}>
-            <Card sx={{ color: '#283f3b', bgcolor: '#99ddc8', p: 3 }} style={{}}>
+            <Card sx={{ color: '#283f3b', bgcolor: '#99ddc8', p: 3 }}>
                 <span style={{ fontWeight: 700 }}>Allergens & Irritants Include:</span><br />
                 <ul>
                     <li>Pollen:

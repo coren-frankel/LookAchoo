@@ -7,13 +7,13 @@ const Privacy = () => {
             <em>
             LookAchoo was built to expediently provide insight into what real-time local conditions could be responsible for nasal irritation.
             </em><br/><br/>
-            <Typography component={'div'} align="start">
+            <Typography component={'div'} align="left">
             <span style={{ fontWeight: 700 }}>Starting with your public IP address</span><br />
             LookAchoo starts by requesting your IP address from <a href="https://www.ipify.org/">ipify</a>. This is a free and harmless request similar to when you search Google for "my IP address".
             In it's current form, this application uses that IP address as the only search paramater needed from you, the user, as the rest of LookAchoo's 'sniffle statistics' are gathered from there.
             <br/>
             <Card sx={{ bgcolor: '#283f3b', color: '#99ddc8', m: 3}} align="center">
-            <Typography component="overline" display="block" gutterBottom>LookAchoo's Pledge to Privacy:</Typography>
+            <Typography display="block" gutterBottom>LookAchoo's Pledge to Privacy:</Typography>
             There is <span style={{fontWeight: '900', textDecoration: 'underline'}}>no</span> collection nor recording of IP addresses at any point--they are used and immediately discarded--shown to you and no one else--and all subsequently saved data attained from it is inpersonal and cannot be used to identify your web activity.
             </Card>
             <span style={{ fontWeight: 700 }}>Who retrieves what?</span><br />

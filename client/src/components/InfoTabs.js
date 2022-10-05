@@ -89,8 +89,8 @@ export default function FullWidthTabs() {
                         aria-label="info tabs"
                     >
                         <Tab label="What's in a Sneeze?" {...a11yProps(0)} />
-                        <Tab label="LookAchoo & Privacy" {...a11yProps(1)} />
-                        <Tab label="Attributions & Citations" {...a11yProps(2)} />
+                        <Tab label="Process & Privacy" {...a11yProps(1)} />
+                        <Tab label="LookAtme" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <SwipeableViews
@@ -99,13 +99,25 @@ export default function FullWidthTabs() {
                     onChangeIndex={handleChangeIndex}
                 >
                     <TabPanel value={value} index={0} dir={theme.direction} align="start">
-                        <WhatSneeze/>
+                        <WhatSneeze />
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
-                        <Privacy/>
+                        <Privacy />
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
-                        "Meow... meow" - Leap Day William
+                        Hello there. My name is Coren Frankel and I am the architect of LookAchoo. I am a software developer in the early stages of his new career, and this is one of my first portfolio builds. This section is kind of a placeholder for something later down the line. For now I'm going to treat it of a list of features that I hope to incorporate and refine over time.
+                        <br />
+                        <Typography component={'div'} align="left">
+                        <span style={{ fontWeight: 700 }} >Probably Coming Soon:</span>
+                        <ul>
+                            <li>Mold & Dust Risk Calculator/Algorithm</li>
+                            <li>Local Cold/Flu Statistics</li>
+                            <li>Conditional Rendering of Allergen Risk by locale season</li>
+                            <li>Greater specificity of pollen species</li>
+                            <li>A toggle/button to shift through backgrounds</li>
+                            <li>Maybe make this a list in my database that users like you can contribute to? 🤪</li>
+                        </ul>
+                        </Typography>
                     </TabPanel>
                 </SwipeableViews>
             </Box>
