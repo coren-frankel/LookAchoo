@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const port = process.env.port || 8000;
 
-// require('../server/routes/sniffle.routes')(app);
+require('../server/routes/sniffle.routes')(app);
 //EXPRESS VERCEL SERVERLESS CONNECTION TO CLIENT
 
 
@@ -30,7 +30,7 @@ app.use('/api/(.*)', require(path.join(__dirname, 'routes', 'sniffle.routes.js')
 
 //STATIC FILES (FRONTEND BUILD)
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client', 'build')));
+    // app.use(express.static(path.join(__dirname, '../client', 'build')));
     app.get('/*', (req, res) => {
         res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
     })
