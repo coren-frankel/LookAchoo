@@ -155,8 +155,7 @@ const ResultMeter = () => {
                     </div>
                 </div>
             }
-            {/* <a href="https://www.flaticon.com/free-icons/stalk" title="Stalk icons">Stalk icons created by Slidicon - Flaticon</a> */}
-            {/* https://icons8.com/icons/ */}
+            
         </>
     )
 }

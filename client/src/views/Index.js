@@ -15,6 +15,7 @@ import pollen from '../assets/video/pollen.mp4'
 import Header from '../components/Header'
 import SniffleBlurb from '../components/SniffleBlurb';
 import Disclaimer from '../components/Disclaimer';
+import Footer from '../components/Footer';
 
 const vidList = [fern, autumn, wild, pollen, breeze, falls, beach, grass]
 const random = Math.floor(Math.random() * vidList.length)
@@ -72,7 +73,7 @@ const Index = () => {
             </video>
             <Header info={false}/>
             <Box sx={{ height: '70vh' }} >
-                <Typography variant="" bgcolor={"#95bf74"} color={"#283f3b"} sx={{ display: 'inline-block' }}>
+                <Typography bgcolor={"#95bf74"} color={"#283f3b"} sx={{ display: 'inline-block', borderRadius: '20px', p: 1 }}>
                     "Sneezes manifest from many causes and almost always from noses." - Unknown
                 </Typography>
                 <Carousel stopAutoPlayOnHover="true" animation='slide' duration={1000} height={300}>
@@ -82,15 +83,16 @@ const Index = () => {
                 </Carousel>
             </Box>
             <Box sx={{ height: '20vh' }}>
-                <Button variant="contained" size="medium" style={{ margin: "1rem", backgroundColor: '#659b5e', color: '#283f3b' }} onClick={getLocation}>{clicked ? <CircularProgress sx={{ height: '1rem', color: "grey.500" }} /> : "*achoo*"}</Button>
-                <br />
                 <Paper elevation={4} sx={{ display: 'inline-block', backgroundColor: "#556f44" }}>
                     <Typography variant="caption" color={'#99ddc8'}>
                         **sneeze to discover what may be tickling your nose locally**
                     </Typography><br />
                 </Paper>
+                <br />
+                <Button variant="contained" size="medium" style={{ margin: "1rem", backgroundColor: '#659b5e', color: '#283f3b' }} onClick={getLocation}>{clicked ? <CircularProgress sx={{ color: "#99ddc8" }} /> : "*achoo*"}</Button>
             </Box>
             <Disclaimer userIP={userIP}/>
+            <Footer/>
         </>
     )
 
