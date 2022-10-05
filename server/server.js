@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const port = process.env.port || 8000;
 
-// require('../server/routes/sniffle.routes')(app);
+require('../server/routes/sniffle.routes')(app);
 //EXPRESS VERCEL SERVERLESS CONNECTION TO CLIENT
 
 
@@ -23,10 +23,10 @@ const port = process.env.port || 8000;
 app.listen(port, () => console.log(`Port ${port} is ready for ya, hon...`))
 
 //ROUTES TO CONNECT FRONTEND & BACKEND
-app.use('/api/hello', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
-app.use('/api/sniffle/new', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
-app.use('/api/sniffle/random', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
-app.use('/api/sniffle/:id', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
+// app.use('/api/hello', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
+// app.use('/api/sniffle/new', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
+// app.use('/api/sniffle/random', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
+// app.use('/api/sniffle/:id', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
 
 //STATIC FILES (FRONTEND BUILD)
 if (process.env.NODE_ENV === 'production') {
