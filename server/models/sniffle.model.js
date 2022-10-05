@@ -31,6 +31,11 @@ const SniffleSchema = new mongoose.Schema({
             speed: {type: Number, required: true}
         },
     },
+    countryStats: {
+        infection: {type: Number, required: false},
+        activeCases: {type: Number, required: false},
+        caseRatio: {type: Number, required: false}
+    },
     createdAt: { type: Date, expires: 86400, default: Date.now }
 });
 

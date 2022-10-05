@@ -1,38 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import corona from '../assets/imgs/corona.png'
-import axios from 'axios';
-import { Card, CardMedia, Typography, Table, TableRow, TableCell, TableBody } from '@mui/material'
-import getISOCode from './getISOCode';
+import { 
+    Card, CardMedia, Typography, 
+    Table, TableRow, TableCell, TableBody 
+    } from '@mui/material'
 import TresCommas from './TresCommas';
-import CountryName from './CountryName';
 
 
 const Covid = (props) => {
     const { sniffle } = props;//READY TO RECEIVE COVID OBJECT
-    const [countryStats, setCountryStats] = useState([])
-    const [loaded, setLoaded] = useState(false)
-    useEffect(() => {
-        let country = sniffle.location.country
-        let iso = getISOCode(country)
-        country = CountryName(iso, country)
-        
-        const options = {
-            method: 'GET',
-            url: `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/${country}/${iso}`,
-            headers: {//FREE API NO HIDING OF KEY NECESSARY?...HELPS TO DECIDE TO KEEP COVID ON FRONT END ONLY
-                'X-RapidAPI-Key': 'ec2d471e81mshd1d781daa45de8ap15487djsn98d072fb2757',
-                'X-RapidAPI-Host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com'
-            }
-        };
-        axios.request(options).then((res) => {
-            if(!res.data[0]){
-                console.log(`Consider Adjusting Country Name: ${country}`)
-            }
-            setCountryStats(res.data[0])
-            setLoaded(true)
-        })
-            .catch((err) => console.error(err));
-    }, [])
     const sevColor = (severity) => {
         let bg;
         if (severity == 0) {
@@ -62,29 +38,26 @@ const Covid = (props) => {
                         <Typography variant='caption'>Covid Stats:</Typography>
                     </Typography>
                 </Typography><hr/>
-                    {countryStats && loaded ?
+                    {sniffle.countryStats.infection && 
                     <Table >
                         <TableBody>
                             <TableRow>
                                 <TableCell ><Typography variant={"caption"}>Active Cases:</Typography></TableCell>
-                                <TableCell ><Typography variant={"caption"}>{TresCommas(countryStats.ActiveCases)}</Typography></TableCell>
+                                <TableCell ><Typography variant={"caption"}>{TresCommas(sniffle.countryStats.activeCases)}</Typography></TableCell>
                             </TableRow>
-                            <TableRow sx={sevColor(countryStats.Infection_Risk)}>
-                                <TableCell sx={sevColor(countryStats.Infection_Risk)}><Typography variant={"caption"}>Infection Risk:</Typography></TableCell>
-                                <TableCell sx={sevColor(countryStats.Infection_Risk)}><Typography variant={"caption"}>{countryStats.Infection_Risk}%</Typography></TableCell>
+                            <TableRow sx={sevColor(sniffle.countryStats.infection)}>
+                                <TableCell sx={sevColor(sniffle.countryStats.infection)}><Typography variant={"caption"}>Infection Risk:</Typography></TableCell>
+                                <TableCell sx={sevColor(sniffle.countryStats.infection)}><Typography variant={"caption"}>{sniffle.countryStats.infection}%</Typography></TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell><Typography variant={"caption"}>Case Ratio:</Typography></TableCell>
-                                <TableCell><Typography variant={"caption"}>1:{TresCommas(countryStats.one_Caseevery_X_ppl)}</Typography></TableCell>
+                                <TableCell><Typography variant={"caption"}>1:{TresCommas(sniffle.countryStats.caseRatio)}</Typography></TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
-                        :
-                        ""
                     }
-                {countryStats && loaded ?
-                    "" : <p>Unable to retrieve covid statistics for {sniffle.location.country} right now
-                    </p>
+                {!sniffle.countryStats.infection &&
+                    <p>Currently unable to retrieve covid statistics for {sniffle.location.country}...</p>
                 }
             </Card>
         </>

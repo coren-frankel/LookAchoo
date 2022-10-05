@@ -105,7 +105,7 @@ export default function FullWidthTabs() {
                         <Privacy />
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
-                        Hello there. My name is Coren Frankel and I am the architect of LookAchoo. I am a software developer in the early stages of his new career, and this is one of my first portfolio builds. This section is kind of a placeholder for something later down the line. For now I'm going to treat it of a list of features that I hope to incorporate and refine over time.
+                        Hello there. My name is Coren "Kern" Frankel and I am the architect of LookAchoo. I'm a software developer in the early stages of his new career, and this is one of my first portfolio builds. This section is kind of a placeholder for something later down the line. For now I'm going to treat it of a list of features that I hope to incorporate and refine over time.
                         <br />
                         <Typography component={'div'} align="left">
                         <span style={{ fontWeight: 700 }} >Probably Coming Soon:</span>
