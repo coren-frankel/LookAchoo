@@ -3,19 +3,13 @@
     "builds": [
         {
             "src": "./client/build",
-            "use": "@vercel/static"
+            "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
             "dest": "/"
-        }
-    ],
-    "rewrites": [
-        {
-            "source": "/api/(.*)",
-            "destination": "/server"
         }
     ]
 }

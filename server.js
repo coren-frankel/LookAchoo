@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 // const mongoose = require('mongoose')
 const cors = require('cors');
-const logger = require('morgan');
+// const logger = require('morgan');
 const path = require('path');
 const port = process.env.PORT || 8000;
 require('./server/config/mongoose.config');
