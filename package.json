@@ -1,9 +1,4 @@
 {
-  "homepage": "https://look-achoo-server.vercel.app",
-  "name": "look-achoo-server",
-  "version": "1.0.0",
-  "description": "LookAchoo sneeze geolocation app",
-  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,9 +8,12 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
-    "mongoose": "^6.6.1",
+    "mongodb": "^4.10.0",
+    "mongoose": "^6.6.5",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
     "socket.io": "^4.5.2"
   }
 }

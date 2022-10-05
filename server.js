@@ -4,17 +4,21 @@
 
 // require('dotenv').config
 const express = require('express');
+const app = express();
 // const mongoose = require('mongoose')
 const cors = require('cors');
-// const path = require('path');
-const app = express();
-const port = 8000;
-require('./config/mongoose.config');
-app.use(cors());
+const logger = require('morgan');
+const path = require('path');
+const port = process.env.PORT || 8000;
+require('./server/config/mongoose.config');
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
-require('../server/routes/sniffle.routes')(app);
+app.get('/api', (req, res) => {
+    res.send("testing...")
+})
+// app.use('/api', require('../server/routes/sniffle.routes'));
 //EXPRESS VERCEL SERVERLESS CONNECTION TO CLIENT
 
 
@@ -30,10 +34,12 @@ app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
 
 //STATIC FILES (FRONTEND BUILD)
 // if (process.env.NODE_ENV === 'production') {
-//     app.use(express.static(path.join(__dirname, '../client', 'build')));
-//     app.get('/*', (req, res) => {
-//         res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
-//     })
+    app.use(express.static(path.join(__dirname, './client/build')));
+    app.get('*', (_, res) => {
+        res.sendFile(
+            path.join(__dirname, './client/build/index.html'));
+            (err) => { if(err) { res.status(500).send(err)}}
+    })
 // }
 
 
@@ -44,3 +50,4 @@ app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
 //         socket.broadcast.emit("send_data_to_all_other_clients", data);
 //     });
 // });
+module.exports = app
