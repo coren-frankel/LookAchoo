@@ -1,8 +1,9 @@
 {
-  "name": "lookachoo",
+  "name": "look-achoo",
   "version": "1.0.0",
-  "description": "",
+  "description": "LookAchoo sneeze geolocation app",
   "main": "index.js",
+  "start": "set NODE_ENV=production&& node server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
