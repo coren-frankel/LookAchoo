@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
+// import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -93,11 +93,11 @@ export default function FullWidthTabs() {
                         <Tab label="LookAtme" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
-                <SwipeableViews
+                {/* <SwipeableViews
                     axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                     index={value}
                     onChangeIndex={handleChangeIndex}
-                >
+                > */}
                     <TabPanel value={value} index={0} dir={theme.direction} align="start">
                         <WhatSneeze />
                     </TabPanel>
@@ -119,7 +119,7 @@ export default function FullWidthTabs() {
                         </ul>
                         </Typography>
                     </TabPanel>
-                </SwipeableViews>
+                {/* </SwipeableViews> */}
             </Box>
         </ThemeProvider>
     );
