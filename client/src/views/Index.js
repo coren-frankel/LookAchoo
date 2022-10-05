@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { 
-    Box, Button, Typography, Paper
-} from '@mui/material';
+import { Box, Button, Typography, Paper } from '@mui/material';
 import Carousel from 'react-material-ui-carousel'
 import fern from '../assets/video/fern.mp4'
 import autumn from '../assets/video/autumn.mp4'
@@ -21,8 +19,6 @@ import Disclaimer from '../components/Disclaimer';
 const vidList = [fern, autumn, wild, pollen, breeze, falls, beach, grass]
 const random = Math.floor(Math.random() * vidList.length)
 const bg = vidList[random]
-
-
 
 const Index = () => {
     const navigate = useNavigate();

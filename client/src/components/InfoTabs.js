@@ -7,7 +7,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { fontWeight } from '@mui/system';
+import WhatSneeze from './WhatSneeze';
+import Privacy from './Privacy';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -21,7 +22,7 @@ function TabPanel(props) {
         >
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    <Typography component="div">{children}</Typography>
                 </Box>
             )}
         </div>
@@ -76,61 +77,38 @@ export default function FullWidthTabs() {
 
     return (
         <ThemeProvider theme={theme}>
-        <Box sx={{ minWidth: 280, maxWidth: 800, bgcolor: "#95bf74", m: 'auto' }}>
-            <AppBar position="static">
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor='primary'
-                    sx={{ bgcolor: "#659b5e" }}
-                    variant="fullWidth"
-                    aria-label="info tabs"
+            <Box sx={{ minWidth: 280, maxWidth: 800, bgcolor: "#95bf74", m: 'auto' }}>
+                <AppBar position="static">
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        indicatorColor="primary"
+                        textColor='primary'
+                        sx={{ bgcolor: "#659b5e" }}
+                        variant="fullWidth"
+                        aria-label="info tabs"
+                    >
+                        <Tab label="What's in a Sneeze?" {...a11yProps(0)} />
+                        <Tab label="LookAchoo & Privacy" {...a11yProps(1)} />
+                        <Tab label="Attributions & Citations" {...a11yProps(2)} />
+                    </Tabs>
+                </AppBar>
+                <SwipeableViews
+                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                    index={value}
+                    onChangeIndex={handleChangeIndex}
                 >
-                    <Tab label="What's in a Sneeze?" {...a11yProps(0)} />
-                    <Tab label="LookAchoo & Privacy" {...a11yProps(1)} />
-                    <Tab label="Attributions & Citations" {...a11yProps(2)} />
-                </Tabs>
-            </AppBar>
-            <SwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={value}
-                onChangeIndex={handleChangeIndex}
-            >
-                <TabPanel value={value} index={0} dir={theme.direction}>
-                    <span style={{fontWeight: 700}}>What is a sneeze?</span><br/>
-                    A sneeze is a complex thing. It can partially be defined as "...a reflex excited by an irritation of the mucous membrane of the nose or, sometimes, by a bright light striking the eye."<sup>1</sup> As an involuntary action, it can be the source of great discomfort, and often the cause of a sneeze can seem mysterious. Sneezes, especially in succession can be due to exposure to allergens but they can also be a symptom of a viral infections like a cold, flu, or the Omicron variants of COVID-19.<sup>2</sup><br/>
-                    <span style={{alignContent: 'start'}}>
-                    <span style={{fontWeight: 700}}>Allergens Include:</span><br/>
-                    <ul>
-                        <li>Pollens:
-                        <ul>
-                            <li>Tree</li>
-                            <li>Weed (especially Ragweed)</li>
-                            <li>Grass</li>
-                        </ul>
-                        </li>
-                        <li>Mold</li>
-                        <li>Dust</li>
-                    </ul>
-                    </span>
-                    <span style={{fontWeight: 700}}>
-                    Other Irritants:</span><br/>
-                    
-                    <hr/> 
-                    <sup>[1]</sup> "sneeze." Farlex Partner Medical Dictionary. 2012. Farlex 3 Oct. 2022 <a href="https://medical-dictionary.thefreedictionary.com/sneeze">https://medical-dictionary.thefreedictionary.com/sneeze</a><br/>
-                    <sup>[2]</sup> “Allergies, Cold, Flu, or COVID-19? | Emerson Hospital.” Emerson Health, <a href="https://www.emersonhospital.org/articles/allergies-or-covid-19">www.emersonhospital.org/articles/allergies-or-covid-19</a>. Accessed 3 Oct. 2022.
-                </TabPanel>
-                <TabPanel value={value} index={1} dir={theme.direction}>
-                    LookAchoo was built to give you an expedient experience in discovering what real-time local conditions could be responsible for a ticklish nose. 
-                    Under the hood of LookAchoo:
-                    More Text
-                </TabPanel>
-                <TabPanel value={value} index={2} dir={theme.direction}>
-                    "Meow... meow" - Leap Day William
-                </TabPanel>
-            </SwipeableViews>
-        </Box>
+                    <TabPanel value={value} index={0} dir={theme.direction} align="start">
+                        <WhatSneeze/>
+                    </TabPanel>
+                    <TabPanel value={value} index={1} dir={theme.direction}>
+                        <Privacy/>
+                    </TabPanel>
+                    <TabPanel value={value} index={2} dir={theme.direction}>
+                        "Meow... meow" - Leap Day William
+                    </TabPanel>
+                </SwipeableViews>
+            </Box>
         </ThemeProvider>
     );
 }
