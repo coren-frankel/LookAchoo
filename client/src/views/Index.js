@@ -36,8 +36,8 @@ const Index = () => {
                     axios.spread((ip4, res) => {
                         setUserIP(ip4.data.ip)//COMMENT OUT FOR TESTING PURPOSES
                         // console.log(ip4.data.ip)
-                        // setSniffles(res.data)
-                        console.log(res.data)
+                        setSniffles(res.data)
+                        // console.log(res.data)
                     })
                 )
             } catch (err) {

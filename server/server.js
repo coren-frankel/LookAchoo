@@ -22,12 +22,12 @@ app.get('/api/test', (req, res) => {
 //EXPRESS VERCEL SERVERLESS CONNECTION TO CLIENT
 
 
-app.use(express.static(path.join(__dirname, '../client/build')));
-app.get('*', (_, res) => {
-    res.sendFile(
-        path.join(__dirname, '../client/build/index.html'));
-        (err) => { if(err) { res.status(500).send(err)}}
-})
+// app.use(express.static(path.join(__dirname, '../client/build')));
+// app.get('*', (_, res) => {
+//     res.sendFile(
+//         path.join(__dirname, '../client/build/index.html'));
+//         (err) => { if(err) { res.status(500).send(err)}}
+// })
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
@@ -50,4 +50,4 @@ app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
 //         socket.broadcast.emit("send_data_to_all_other_clients", data);
 //     });
 // });
-module.exports = app
+// module.exports = app
