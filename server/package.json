@@ -1,12 +1,11 @@
 {
-  "name": "look-achoo",
+  "homepage": "https://look-achoo-server.vercel.app",
+  "name": "look-achoo-server",
   "version": "1.0.0",
   "description": "LookAchoo sneeze geolocation app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "export NODE_ENV=production && npm run build && npm run start-server",
-    "dev": "export NODE_ENV=dev && npm run build && npm run start-server"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",

@@ -1,18 +1,18 @@
-if(process.env.NODE_ENV !== 'production') {
-    require('dotenv').config({path: __dirname+'/.env'});
-}
+// if(process.env.NODE_ENV !== 'production') {
+//     require('dotenv').config({path: __dirname+'/.env'});
+// }
 
 // require('dotenv').config
 const express = require('express');
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const cors = require('cors');
-const path = require('path');
+// const path = require('path');
 const app = express();
+const port = 8000;
 require('./config/mongoose.config');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const port = process.env.port || 8000;
 
 require('../server/routes/sniffle.routes')(app);
 //EXPRESS VERCEL SERVERLESS CONNECTION TO CLIENT
@@ -20,7 +20,7 @@ require('../server/routes/sniffle.routes')(app);
 
 //SOCKET.io SERVERSIDE FOUNDATION 
 // const  server = 
-app.listen(port, () => console.log(`Port ${port} is ready for ya, hon...`))
+app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
 
 //ROUTES TO CONNECT FRONTEND & BACKEND
 // app.use('/api/hello', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
@@ -29,12 +29,12 @@ app.listen(port, () => console.log(`Port ${port} is ready for ya, hon...`))
 // app.use('/api/sniffle/:id', require(path.join(__dirname, 'routes', 'sniffle.routes.js')))
 
 //STATIC FILES (FRONTEND BUILD)
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client', 'build')));
-    app.get('/*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
-    })
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname, '../client', 'build')));
+//     app.get('/*', (req, res) => {
+//         res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
+//     })
+// }
 
 
 // const io = require('socket.io')(server, {cors: true});
