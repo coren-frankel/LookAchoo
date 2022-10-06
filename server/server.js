@@ -6,9 +6,9 @@ const port = 8000;
 require('./config/mongoose.config');
 app.use(logger('dev'))
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
-require('./routes/sniffle.routes')(app);
+require('./routes/sniffle.routes');
+// app.use('/api', routes);
 
 app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
