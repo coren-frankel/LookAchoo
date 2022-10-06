@@ -58,10 +58,7 @@ const Index = () => {
             axios.post('http://localhost:8000/api/sniffle/new', { ip: userIP })
                 .then(newSniffle => navigate(`/display/${newSniffle.data._id}`))
                 .catch(err => {
-                    const errorResponse = err.response.data.errors;
-                    for (const key of Object.keys(errorResponse)) {
-                        console.log(errorResponse[key].message)
-                    }
+                    console.log(err)
                     window.alert("Ahh! Ya lost it!\nLookAchoo wasn't able to get location data\nbased on the IP Address you are using\nUsing a VPN will skew location results")
                 })
             : window.alert("No IP Address, no workee...")
