@@ -31,12 +31,12 @@ const Index = () => {
             try {
                 axios.all([//MULTIPLE CALLS AT ONCE! COOL UPGRADE!
                     axios.get('https://api64.ipify.org?format=json'),//IP4 & IP6 IP ADDRESS RETRIEVAL
-                    axios.get('http://localhost:8000/api/sniffle/random')
+                    // axios.get('http://localhost:8000/api/sniffle/random')
                 ]).then(
                     axios.spread((ip4, res) => {
                         setUserIP(ip4.data.ip)//COMMENT OUT FOR TESTING PURPOSES
                         // console.log(ip4.data.ip)
-                        setSniffles(res.data)
+                        // setSniffles(res.data)
                         // console.log(res.data)
                     })
                 )
@@ -56,7 +56,7 @@ const Index = () => {
             setClicked(true)
         userIP ?
             axios.post('http://localhost:8000/api/sniffle/new', { ip: userIP })
-                .then(newSniffle => navigate(`/${newSniffle.data._id}`))
+                .then(newSniffle => navigate(`/display/${newSniffle.data._id}`))
                 .catch(err => {
                     const errorResponse = err.response.data.errors;
                     for (const key of Object.keys(errorResponse)) {

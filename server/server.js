@@ -9,6 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-require('../server/routes/sniffle.routes')(app);
+require('./routes/sniffle.routes')(app);
 
 app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
