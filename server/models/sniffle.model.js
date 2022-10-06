@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const SniffleSchema = new mongoose.Schema({
     location : {
         city : {type: String, required: false},

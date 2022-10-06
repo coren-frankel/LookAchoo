@@ -7,11 +7,7 @@ module.exports.index = (req, res) => {//TESTING
     res.json({ message: "Hello there!" })
 }
 module.exports.logNewSniffle = (req, res) => {
-    // console.log(req.body.ip)
     console.log("logNewSniffle enganged...")
-    // if (!req.body.ip) {//IF USERIP NOT PROVIDED/WAS BLOCKED?
-    //     console.log("IP address not logged")
-    // }
     const options = {
         method: 'GET',
         url: 'https://weatherapi-com.p.rapidapi.com/ip.json',
