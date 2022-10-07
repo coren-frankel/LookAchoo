@@ -13,4 +13,5 @@ const options = {
 const dbConnection = () => mongoose.connect(uri, options)
     .then(() => console.log('Established a connection to the database'))
     .catch(err => console.log('Something went wrong when connecting to the database', err));
-module.exports = { dbConnection }
+const closeConnection = () => mongoose.connection.close()
+module.exports = { dbConnection, closeConnection }
