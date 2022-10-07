@@ -1,6 +1,5 @@
 require('dotenv').config();//ENV IMPORT
 const axios = require('axios');
-const { dbConnection, closeConnection } = require('../config/mongoose.config');
 const { Sniffle } = require('../models/sniffle.model');
 const { getISOCode, countryName } = require('../modules/countryISO');
 
@@ -9,7 +8,6 @@ module.exports.index = (req, res) => {//TESTING
     res.json({ message: "Hello there!" })
 }
 module.exports.logNewSniffle = (req, res) => {
-    dbConnection()
     console.log("logNewSniffle enganged...")
     const options = {
         method: 'GET',
@@ -114,19 +112,14 @@ module.exports.logNewSniffle = (req, res) => {
         console.error(err)
         console.log("Weather API failed to locate IP Address")
     });
-    closeConnection()
 }
 module.exports.getSniffle = (req, res) => {
-    dbConnection()
     Sniffle.findOne({ _id: req.params.id })
         .then(sniffle => res.json(sniffle))
         .catch(err => res.json(err));
-    closeConnection()
 }
 module.exports.getRandom = (req, res) => {
-    dbConnection()
     Sniffle.aggregate([{ $sample: { size: 10 } }])
         .then(sniffles => res.json(sniffles))
         .catch(err => res.json(err));
-    closeConnection()
 }
