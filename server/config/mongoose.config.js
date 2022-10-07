@@ -22,3 +22,5 @@ const options = {
 mongoose.connect(uri, options)
     .then(() => console.log('Established a connection to the database'))
     .catch(err => console.log('Something went wrong when connecting to the database', err));
+
+mongoose.connection.close()
