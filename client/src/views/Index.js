@@ -55,7 +55,7 @@ const Index = () => {
         clicked ? null ://LIMIT OVERCLICKING WHILE PROCESSING REQUEST
             setClicked(true)
         userIP ?
-            axios.post('https://look-achoo-express-server-coren-frankel.vercel.app', { ip: userIP })
+            axios.post('https://look-achoo-express-server-coren-frankel.vercel.app/api/sniffle/new', { ip: userIP })
                 .then(newSniffle => navigate(`/display/${newSniffle.data._id}`))
                 .catch(err => {
                     console.log(err)
