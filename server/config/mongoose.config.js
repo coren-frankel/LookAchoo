@@ -10,17 +10,7 @@ const options = {
 }
 
 
-// const mongoClient = new mongoose.mongo.MongoClient(uri, options);
-// mongoClient.connect(err => {
-//     // const collection = mongoClient.db("achoo_db").collection("sniffles");
-//     console.log('Established a connection to the database')
-    
-//     // perform actions on the collection object
-//     mongoClient.close();
-// })
-
-mongoose.connect(uri, options)
+const dbConnection = () => mongoose.connect(uri, options)
     .then(() => console.log('Established a connection to the database'))
     .catch(err => console.log('Something went wrong when connecting to the database', err));
-
-mongoose.connection.close()
+module.exports = { dbConnection }
