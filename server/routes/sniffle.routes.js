@@ -4,4 +4,5 @@ module.exports = function(app){
     app.post('/api/sniffle/new', SniffleController.logNewSniffle);
     app.get('/api/sniffle/random', SniffleController.getRandom)
     app.get('/api/sniffle/:id', SniffleController.getSniffle)
+    app.get('/', SniffleController.home)
 }

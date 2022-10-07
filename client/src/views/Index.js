@@ -65,9 +65,11 @@ const Index = () => {
     return (
         <>
                 {/* VIDEO BACKGROUND */}
+            { bg && 
             <video playsInline autoPlay muted loop id='myVid'>
                 <source src={bg} type='video/mp4' />
             </video>
+            }
             <Header info={false}/>
             <Box sx={{ height: '70vh' }} >
                 <Typography bgcolor={"#95bf74"} color={"#283f3b"} sx={{ display: 'inline-block', borderRadius: '20px', p: 1 }}>

@@ -106,9 +106,11 @@ const ResultMeter = () => {
         <>
             {loaded &&
                 <div>
+                    { bg && 
                     <video playsInline autoPlay muted loop id='myVid' >
                         <source src={6 <= moment(sniffle.location.localtime).hour() && moment(sniffle.location.localtime).hour() <= 18 ? dayPick : nightPick} type='video/mp4' />
                     </video>
+                    }
                         {/* IF IT'S AFTER 6PM LOCAL TIME, THE VIDEO IS SET TO MATCH DAY/NIGHT */}
                     <Paper elevation={3}>
                         <Typography variant='h6' bgcolor="#95bf74" color={"#283f3b"}>

@@ -3,8 +3,12 @@ const axios = require('axios');
 const { Sniffle } = require('../models/sniffle.model');
 const { getISOCode, countryName } = require('../modules/countryISO');
 
+
 module.exports.index = (req, res) => {//TESTING
     res.json({ message: "Hello there!" })
+}
+module.exports.home = (req, res) => {//TESTING
+    res.json({ success: "Server is live!", warning: "You shouldn't be here!" })
 }
 module.exports.logNewSniffle = (req, res) => {
     console.log("logNewSniffle enganged...")
