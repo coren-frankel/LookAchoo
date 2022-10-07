@@ -7,6 +7,5 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 require('./routes/sniffle.routes')(app);
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
