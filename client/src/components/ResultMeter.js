@@ -106,7 +106,7 @@ const ResultMeter = () => {
         <>
             {loaded &&
                 <div>
-                    { rnight && rday &&//LOAD BACKGROUND SOURCE
+                    { (nightpick && daypick) &&//LOAD BACKGROUND SOURCE
                     <video playsInline autoPlay muted loop id='myVid' >
                         <source src={6 <= moment(sniffle.location.localtime).hour() && moment(sniffle.location.localtime).hour() <= 18 ? dayPick : nightPick} type='video/mp4' />
                     </video>
