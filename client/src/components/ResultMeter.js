@@ -44,7 +44,7 @@ const ResultMeter = () => {
     const [loaded, setLoaded] = useState(false);
     useEffect(() => {
         // axios.get('https://look-achoo-express-server.vercel.app/api/sniffle/' + id)
-        axios.get('https://localhost:8000/api/sniffle/' + id)
+        axios.get('http://localhost:8000/api/sniffle/' + id)
             .then(res => {
                 setSniffle(res.data)
                 setLoaded(true)
@@ -107,7 +107,7 @@ const ResultMeter = () => {
         <>
             {loaded &&
                 <div>
-                    { bg && 
+                    { rnight && rday && 
                     <video playsInline autoPlay muted loop id='myVid' >
                         <source src={6 <= moment(sniffle.location.localtime).hour() && moment(sniffle.location.localtime).hour() <= 18 ? dayPick : nightPick} type='video/mp4' />
                     </video>
