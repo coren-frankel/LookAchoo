@@ -43,7 +43,7 @@ const ResultMeter = () => {
     const [sniffle, setSniffle] = useState({});
     const [loaded, setLoaded] = useState(false);
     useEffect(() => {
-        axios.get('http://localhost:8000/api/sniffle/' + id)
+        axios.get('https://look-achoo-express-server-coren-frankel.vercel.app/api/sniffle/' + id)
             .then(res => {
                 setSniffle(res.data)
                 setLoaded(true)
