@@ -31,7 +31,7 @@ const Index = () => {
             try {
                 axios.all([//MULTIPLE CALLS AT ONCE! COOL UPGRADE!
                     axios.get('https://api64.ipify.org?format=json'),//IP4 & IP6 IP ADDRESS RETRIEVAL
-                    axios.get('https://look-achoo-express-server-coren-frankel.vercel.app/api/sniffle/random')
+                    axios.get('https://look-achoo-express-server.vercel.app/api/sniffle/random')
                 ]).then(
                     axios.spread((ip4, res) => {
                         setUserIP(ip4.data.ip)//COMMENT OUT FOR TESTING PURPOSES
@@ -55,7 +55,7 @@ const Index = () => {
         clicked ? null ://LIMIT OVERCLICKING WHILE PROCESSING REQUEST
             setClicked(true)
         userIP ?
-            axios.post('https://look-achoo-express-server-coren-frankel.vercel.app/api/sniffle/new', { ip: userIP })
+            axios.post('https://look-achoo-express-server.vercel.app/api/sniffle/new', { ip: userIP })
                 .then(newSniffle => navigate(`/display/${newSniffle.data._id}`))
                 .catch(err => {
                     console.log(err)
