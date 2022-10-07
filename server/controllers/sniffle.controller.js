@@ -1,4 +1,4 @@
-require('dotenv').config();//API KEY CALL??
+require('dotenv').config();//ENV IMPORT
 const axios = require('axios');
 const { Sniffle } = require('../models/sniffle.model');
 const { getISOCode, countryName } = require('../modules/countryISO');
@@ -13,12 +13,12 @@ module.exports.logNewSniffle = (req, res) => {
         url: 'https://weatherapi-com.p.rapidapi.com/ip.json',
         params: { q: req.body.ip },
         headers: {
-            'X-RapidAPI-Key': process.env.WEATHER_API_KEY,//process.env
+            'X-RapidAPI-Key': process.env.WEATHER_API_KEY,
             'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
         }
     };//RETRIEVE LOCATION DATA FROM IP ADDRESS
     axios.request(options).then(resp => {
-        // console.log(resp.data)
+        console.log(resp.data)
         const { lat, lon, region, city, country_name, localtime, country_code } = resp.data;
         // console.log(`Lattitude: ${lat} Longitude: ${lon}`)
         const fetchData = async => {
@@ -56,10 +56,10 @@ module.exports.logNewSniffle = (req, res) => {
                     axios.spread((resp1, resp2) => {
                         //WEATHER CONDITIONS
                         const cond = resp1.data.data.timelines[0].intervals[0].values//WEATHER CONDITIONS
-                        // console.log(resp1.data.data.timelines[0].intervals[0].values)
+                        console.log(resp1.data.data.timelines[0].intervals[0].values)
                         //COVID STATISTICS
                         const inf = resp2.data[0]
-                        // console.log(resp2.data[0])
+                        console.log(resp2.data[0])
                         Sniffle.create({
                             location: {
                                 city: city,

@@ -1,14 +1,13 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const logger = require('morgan');
+const path = require('path');
 const port = 8000;
-require('./config/mongoose.config');
-app.use(logger('dev'))
+require('./config/mongoose.config')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-require('./routes/sniffle.routes');
-// app.use('/api', routes);
+require('./routes/sniffle.routes')(app);
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
