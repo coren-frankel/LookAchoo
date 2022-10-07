@@ -1,9 +1,17 @@
 {
     "version": 2,
+    "cleanUrls": true,
+    "framework": "nextjs",
     "builds": [
         {
             "src": "./server.js",
             "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
         }
     ]
 }
