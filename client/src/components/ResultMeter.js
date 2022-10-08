@@ -117,7 +117,7 @@ const ResultMeter = () => {
                             Currently in {LocName(sniffle.location)} 
                         </Typography>
                         <Typography variant='body2' bgcolor="#556f44" color={'#99ddc8'} >
-                            At ({sniffle.location.lat}, {sniffle.location.lon}) {moment(sniffle.location.localtime).format('MMMM Do YYYY, h:mm a')}
+                            At ({sniffle.location.lat}, {sniffle.location.lon}) {moment(sniffle.location.localtime).utcOffset(moment().utcOffset()).format('MMMM Do YYYY, h:mm a')}
                         </Typography>
                     </Paper>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
