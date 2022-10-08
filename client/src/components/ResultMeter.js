@@ -123,7 +123,7 @@ const ResultMeter = () => {
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <Conditions sniffle={sniffle} />
                         <Card sx={{ minWidth: 190, maxWidth: 200, margin: '2%', padding: '1% 2% 2%', backgroundColor: 'rgba(200,200,200,0.7)' }} elevation={5}>
-                            <Typography variant='h6' style={6 <= moment(sniffle.location.localtime).hour() && moment(sniffle.location.localtime).hour() <= 18 ? {backgroundColor: "skyblue"} : {backgroundColor: "midnightblue"}} sx={{borderRadius: '10px'}} color={6 <= moment(sniffle.location.localtime).hour() && moment(sniffle.location.localtime).hour() <= '18' ? "black" : "white"}>In The Air {6 <= moment(sniffle.location.localtime).hour() && moment(sniffle.location.localtime).hour() <= '18' ? "Today" : "Tonight"}:</Typography>
+                            <Typography variant='h6' style={6 <= moment().hour() && moment().hour() <= 18 ? {backgroundColor: "skyblue"} : {backgroundColor: "midnightblue"}} sx={{borderRadius: '10px'}} color={6 <= moment().hour() && moment().hour() <= '18' ? "black" : "white"}>In The Air {6 <= moment().hour() && moment().hour() <= '18' ? "Today" : "Tonight"}:</Typography>
                             <Typography component="div" sx={{ display: 'flex', alignItems: 'center', borderRadius: '25px', margin: '2% 0' }} style={sevColor(sniffle.tickles.grass)}>
                                 <CardMedia component="img" image={grass} alt='grass icon' style={imgStyle} />
                                 <Typography variant='caption' sx={sevColor(sniffle.tickles.grass)}>Grass Pollen: {sevCalc(sniffle.tickles.grass)}</Typography>
