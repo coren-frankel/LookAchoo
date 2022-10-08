@@ -108,7 +108,7 @@ const ResultMeter = () => {
                 <div>
                     { nightPick && dayPick ?  //LOAD BACKGROUND SOURCE
                     <video playsInline autoPlay muted loop id='myVid' >
-                        <source src={6 <= moment(sniffle.location.localtime).hour() && moment(sniffle.location.localtime).hour() <= 18 ? dayPick : nightPick} type='video/mp4' />
+                        <source src={6 <= moment().hour() && moment().hour() <= 18 ? dayPick : nightPick} type='video/mp4' />
                     </video> : ""
                     }
                         {/* IF IT'S AFTER 6PM LOCAL TIME, THE VIDEO IS SET TO MATCH DAY/NIGHT */}
@@ -117,7 +117,7 @@ const ResultMeter = () => {
                             Currently in {LocName(sniffle.location)} 
                         </Typography>
                         <Typography variant='body2' bgcolor="#556f44" color={'#99ddc8'} >
-                            At ({sniffle.location.lat}, {sniffle.location.lon}) {moment(sniffle.location.localtime).format('MMMM Do YYYY, h:mm a')}
+                            At ({sniffle.location.lat}, {sniffle.location.lon}) {moment().format('MMMM Do YYYY, h:mm a')}
                         </Typography>
                     </Paper>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
