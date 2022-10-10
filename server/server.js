@@ -2,11 +2,13 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const port = process.env.PORT || 8000;
+const port = 8000;
 require('./config/mongoose.config')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const corsOptions = {origin: [process.env.CLIENT_URL, "http://localhost:3000"]}
+const corsOptions = {
+    origin: process.env.CLIENT_URL
+}
 app.use(cors(corsOptions));
 require('./routes/sniffle.routes')(app);
 app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
