@@ -6,17 +6,7 @@ const port = process.env.PORT || 8000;
 require('./config/mongoose.config')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const whitelist = "*";
-const corsOptions = {
-    methods: ["GET", "POST"],
-    optionSuccessStatus: 200,
-    origin: (origin, callback) => {
-        if (whitelist.includes(origin))
-            return callback(null, true)
-        callback(new Error('Not allowed by CORS'));
-    }
-}
+const corsOptions = {origin: [process.env.CLIENT_URL, "http://localhost:3000"]}
 app.use(cors(corsOptions));
 require('./routes/sniffle.routes')(app);
-
 app.listen(port, () => console.log(`Port ${port} is ready for ya, sweetums...`))
