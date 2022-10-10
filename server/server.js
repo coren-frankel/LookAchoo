@@ -8,14 +8,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const whitelist = [process.env.CLIENT_URL, "http://localhost:3000"];
 const corsOptions = {
+    credentials: true,
+    methods: ["GET", "POST", "OPTIONS"],
+    optionSuccessStatus: 200,
     origin: (origin, callback) => {
         if (whitelist.includes(origin))
             return callback(null, true)
         callback(new Error('Not allowed by CORS'));
-    },
-    credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],
-    optionSuccessStatus: 200
+    }
 }
 app.use(cors(corsOptions));
 require('./routes/sniffle.routes')(app);
