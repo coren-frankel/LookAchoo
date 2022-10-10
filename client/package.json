@@ -2,7 +2,6 @@
     "homepage": "https://look-achoo.vercel.app",
     "name": "client",
     "version": "0.1.0",
-    "proxy": "https://look-achoo-express-server.vercel.app",
     "private": true,
     "dependencies": {
         "@emotion/react": "^11.10.4",
