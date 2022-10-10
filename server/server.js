@@ -6,10 +6,9 @@ const port = process.env.PORT || 8000;
 require('./config/mongoose.config')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const whitelist = [process.env.CLIENT_URL, "http://localhost:3000"];
+const whitelist = "*";
 const corsOptions = {
-    credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],
+    methods: ["GET", "POST"],
     optionSuccessStatus: 200,
     origin: (origin, callback) => {
         if (whitelist.includes(origin))
