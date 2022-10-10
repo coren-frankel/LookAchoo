@@ -7,7 +7,10 @@ require('./config/mongoose.config')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
-    origin: process.env.CLIENT_URL
+    origin: process.env.CLIENT_URL,
+    preflightContinue: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials:true
 }
 app.use(cors(corsOptions));
 require('./routes/sniffle.routes')(app);
