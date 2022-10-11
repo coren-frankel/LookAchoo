@@ -89,7 +89,7 @@ const Index = () => {
                     </Typography><br />
                 </Paper>
                 <br />
-                <Button variant="contained" size="large" style={{ margin: "1rem", backgroundColor: '#659b5e', color: '#283f3b' }} onClick={getLocation}>{clicked ? <CircularProgress sx={{ color: "#99ddc8" }} /> : "*achoo*<br/>**click me**"}</Button>
+                <Button variant="contained" size="large" style={{ margin: "1rem", backgroundColor: '#659b5e', color: '#283f3b',  border: 'solid 2px' }} onClick={getLocation}>{clicked ? <CircularProgress sx={{ color: "#99ddc8" }} /> : "*achoo* **click here** *achoo*"}</Button>
             </Box>
             <Disclaimer userIP={userIP} approved={consent}/>
             <Footer/>
