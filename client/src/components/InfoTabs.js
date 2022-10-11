@@ -88,8 +88,8 @@ export default function FullWidthTabs() {
                         variant="fullWidth"
                         aria-label="info tabs"
                     >
-                        <Tab label="What's in a Sneeze?" {...a11yProps(0)} />
-                        <Tab label="Process & Privacy" {...a11yProps(1)} />
+                        <Tab label="Process & Privacy" {...a11yProps(0)} />
+                        <Tab label="What's in a Sneeze?" {...a11yProps(1)} />
                         <Tab label="LookAtme" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
