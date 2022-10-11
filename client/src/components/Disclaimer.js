@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
     Dialog, DialogActions, DialogTitle, 
@@ -11,9 +11,21 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 const Disclaimer = (props) => {
     const { userIP } = props;
+    const [accepted, setAccepted] = useState(false);
+    const [open, setOpen] = useState(!accepted ? true : false)
     const navigate = useNavigate();
-    const [open, setOpen] = useState(true)
+    useEffect(() => {
+        if (window.sessionStorage.getItem('cookies')) {
+            setAccepted(true);
+            setOpen(false);
+        }
+    }, []);
+    function acceptPolicy() {
+        sessionStorage.setItem('cookies', true);
+        setAccepted(true);
+    }
     const handleYesClose = () => {
+        acceptPolicy()
         setOpen(false);
     };//HANDLE DIALOG PRIVACY DECLARATION
     const handleNoClose = () => {
