@@ -26,6 +26,7 @@ const Index = () => {
     const [userIP, setUserIP] = useState("");//HARDCODE IPS HERE FOR TESTING PURPOSES
     const [clicked, setClicked] = useState(false)
     const [sniffles, setSniffles] = useState([])
+    const [consent, setConsent] = useState(false)
     useEffect(() => {//RETRIEVE USER IP ADDRESS ON LOAD
         const fetchData = async => {
             try {
@@ -88,9 +89,9 @@ const Index = () => {
                     </Typography><br />
                 </Paper>
                 <br />
-                <Button variant="contained" size="medium" style={{ margin: "1rem", backgroundColor: '#659b5e', color: '#283f3b' }} onClick={getLocation}>{clicked ? <CircularProgress sx={{ color: "#99ddc8" }} /> : "*achoo*"}</Button>
+                <Button variant="contained" size="large" style={{ margin: "1rem", backgroundColor: '#659b5e', color: '#283f3b' }} onClick={getLocation}>{clicked ? <CircularProgress sx={{ color: "#99ddc8" }} /> : "*achoo*<br/>**click me**"}</Button>
             </Box>
-            <Disclaimer userIP={userIP}/>
+            <Disclaimer userIP={userIP} approved={consent}/>
             <Footer/>
         </>
     )
