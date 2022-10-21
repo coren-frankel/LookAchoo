@@ -134,7 +134,7 @@ const Conditions = (props) => {
     const condImg = (sniffle) => {
         let img;
         let code = sniffle.conditions.weatherCode
-        let nowHour = moment(sniffle.location.localtime).hour()
+        let nowHour = moment().hour()
         if(nowHour >= 6 && nowHour <= 18) {
             switch(code){
                 case 0:
