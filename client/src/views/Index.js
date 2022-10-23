@@ -11,13 +11,12 @@ import beach from '../assets/video/beach.mp4'
 import grass from '../assets/video/grass.mp4'
 import falls from '../assets/video/day1.mp4'
 import breeze from '../assets/video/breeze.mp4'
-import pollen from '../assets/video/pollen.mp4'
 import Header from '../components/Header'
 import SniffleBlurb from '../components/SniffleBlurb';
 import Disclaimer from '../components/Disclaimer';
 import Footer from '../components/Footer';
 
-const vidList = [fern, autumn, wild, pollen, breeze, falls, beach, grass]
+const vidList = [fern, autumn, wild, breeze, falls, beach, grass]
 const random = Math.floor(Math.random() * vidList.length)
 const bg = vidList[random]
 
