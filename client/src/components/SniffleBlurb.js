@@ -88,7 +88,7 @@ const SniffleBlurb = (props) => {
         }
         return severity;
     }
-    const sniffleName = () => {//Randomized "Title"
+    const sniffleName = () => {//Randomized blurb title--sniffleblurbs!!
         const d = ["A sniffle", "Sneezes", "Itchy nose", "Sniffles", "*achoo*", "Nose tickles", "A Sneezer", '"Sneez-Louise"', "🤧", '"Sniff you were here"']
         const r = Math.floor(Math.random() * d.length)
         return d[r]
