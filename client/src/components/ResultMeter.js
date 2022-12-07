@@ -27,6 +27,10 @@ import Wind from './Wind'
 import Covid from './Covid'
 import LocName from './LocName';
 
+const BASE_URL = process.env.SERVER_URL
+    ? `${process.env.SERVER_URL}/api`
+    : 'http://localhost:8000/api';
+
 const imgStyle = {
     width: '15%',
     height: '15%',
@@ -43,7 +47,7 @@ const ResultMeter = () => {
     const [sniffle, setSniffle] = useState({});
     const [loaded, setLoaded] = useState(false);
     useEffect(() => {
-        axios.get('https://look-achoo-express-server.vercel.app/api/sniffle/' + id)
+        axios.get(`${BASE_URL}/sniffle/${id}`)
             .then(res => {
                 setSniffle(res.data)
                 setLoaded(true)

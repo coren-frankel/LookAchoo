@@ -16,6 +16,10 @@ import SniffleBlurb from '../components/SniffleBlurb';
 import Disclaimer from '../components/Disclaimer';
 import Footer from '../components/Footer';
 
+const BASE_URL = process.env.SERVER_URL
+    ? `${process.env.SERVER_URL}/api`
+    : 'http://localhost:8000/api';
+
 const vidList = [fern, autumn, wild, breeze, falls, beach, grass]
 const random = Math.floor(Math.random() * vidList.length)
 const bg = vidList[random]
@@ -31,7 +35,7 @@ const Index = () => {
             try {
                 axios.all([//MULTIPLE CALLS AT ONCE! COOL UPGRADE!
                     axios.get('https://api64.ipify.org?format=json'),//IP4 & IP6 IP ADDRESS RETRIEVAL
-                    axios.get('https://look-achoo-express-server.vercel.app/api/sniffle/random')
+                    axios.get(`${BASE_URL}/sniffle/random`)
                 ]).then(
                     axios.spread((ip4, res) => {
                         setUserIP(ip4.data.ip)//COMMENT OUT FOR TESTING PURPOSES
@@ -55,7 +59,7 @@ const Index = () => {
         clicked ? null ://LIMIT OVERCLICKING WHILE PROCESSING REQUEST
             setClicked(true)
         userIP ?
-            axios.post('https://look-achoo-express-server.vercel.app/api/sniffle/new', { ip: userIP })
+            axios.post(`${BASE_URL}/sniffle/new`, { ip: userIP })
                 .then(newSniffle => navigate(`/display/${newSniffle.data._id}`))
                 .catch(err => {
                     console.log(err)

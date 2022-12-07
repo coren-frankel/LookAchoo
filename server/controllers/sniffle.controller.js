@@ -1,12 +1,13 @@
-require('dotenv').config();//ENV IMPORT
+require('dotenv').config();//.env IMPORT
 const axios = require('axios');
 const { Sniffle } = require('../models/sniffle.model');
 const { getISOCode, countryName } = require('../modules/countryISO');
 
 
-module.exports.index = (req, res) => {//TESTING
+module.exports.index = (req, res) => {//SERVER TEST ROUTE
     res.json({ message: "Hello there!" })
 }
+//POST SNIFFLE REQUEST
 module.exports.logNewSniffle = (req, res) => {
     console.log("logNewSniffle enganged...")
     const options = {
@@ -45,7 +46,7 @@ module.exports.logNewSniffle = (req, res) => {
                 const optis = {
                     method: 'GET',
                     url: `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/${country}/${iso}`,
-                    headers: {//FREE API NO HIDING OF KEY NECESSARY?...HELPS TO DECIDE TO KEEP COVID ON FRONT END ONLY
+                    headers: {
                         'X-RapidAPI-Key': process.env.VACCOVID_API_KEY,
                         'X-RapidAPI-Host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com'
                     }
