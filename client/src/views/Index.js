@@ -16,8 +16,8 @@ import SniffleBlurb from '../components/SniffleBlurb';
 import Disclaimer from '../components/Disclaimer';
 import Footer from '../components/Footer';
 
-const BASE_URL = process.env.SERVER_URL
-    ? `${process.env.SERVER_URL}/api`
+const BASE_URL = process.env.REACT_APP_SERVER_URL
+    ? `${process.env.REACT_APP_SERVER_URL}/api`
     : 'http://localhost:8000/api';
 
 const vidList = [fern, autumn, wild, breeze, falls, beach, grass]

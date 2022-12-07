@@ -19,7 +19,6 @@ import day3 from '../assets/video/day3.mp4'
 import day4 from '../assets/video/day4.mp4'
 import day6 from '../assets/video/day6.mp4'
 import day7 from '../assets/video/day7.mp4'
-
 import { Typography, Card, CardMedia, Paper } from '@mui/material';
 import moment from 'moment'
 import Conditions from './Conditions';
@@ -27,8 +26,8 @@ import Wind from './Wind'
 import Covid from './Covid'
 import LocName from './LocName';
 
-const BASE_URL = process.env.SERVER_URL
-    ? `${process.env.SERVER_URL}/api`
+const BASE_URL = process.env.REACT_APP_SERVER_URL
+    ? `${process.env.REACT_APP_SERVER_URL}/api`
     : 'http://localhost:8000/api';
 
 const imgStyle = {
