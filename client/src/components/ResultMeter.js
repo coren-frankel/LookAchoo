@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import grass from '../assets/imgs/grass.png'
 import dandelion from '../assets/imgs/dandelion.png'
@@ -45,6 +45,7 @@ const ResultMeter = () => {
     const { id } = useParams();
     const [sniffle, setSniffle] = useState({});
     const [loaded, setLoaded] = useState(false);
+    const navigate = useNavigate();
     useEffect(() => {
         axios.get(`${BASE_URL}/sniffle/${id}`)
             .then(res => {
@@ -52,7 +53,10 @@ const ResultMeter = () => {
                 setLoaded(true)
                 // console.log(res.data.location)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                navigate('/')
+            })
     }, [])
 
     const sevCalc = (sevNum) => {

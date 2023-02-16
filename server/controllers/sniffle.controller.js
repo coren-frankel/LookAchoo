@@ -5,7 +5,7 @@ const { getISOCode, countryName } = require('../modules/countryISO');
 
 
 module.exports.index = (req, res) => {//SERVER TEST ROUTE
-    res.json({ message: "Hello there!" })
+    res.json({ message: "Hello there! Are you lost?" })
 }
 //POST SNIFFLE REQUEST
 module.exports.logNewSniffle = (req, res) => {
@@ -117,7 +117,7 @@ module.exports.logNewSniffle = (req, res) => {
 module.exports.getSniffle = (req, res) => {
     Sniffle.findOne({ _id: req.params.id })
         .then(sniffle => res.json(sniffle))
-        .catch(err => res.json(err));
+        .catch(err => res.status(400).json(err));
 }
 module.exports.getRandom = (req, res) => {
     Sniffle.aggregate([{ $sample: { size: 10 } }])
