@@ -2,14 +2,19 @@
 > LookAchoo is a Geolocation Sneeze Context OSS app constructed in MERN stack. Through a chain of public API calls it identifies the users' IP address and by IP Geolocation then augments real-time weather conditions, air quality, and COVID-19 statical data to inform users about local factors and how to respond to their discomfort. 
 > Live site [_here_](https://look-achoo.vercel.app/). <!-- Once a live deployment is available, include the link here. -->
 ## Table of Contents
-* [General Info](#general-information)
-* [Technologies Used](#technologies-used)
-* [Features](#features)
-* [Screenshots](#screenshots)
-* [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
-* [Acknowledgements](#acknowledgements)
-* [Contact](#contact)
+- [*LookAchoo*](#lookachoo)
+  - [Table of Contents](#table-of-contents)
+  - [General Information](#general-information)
+  - [Technologies Used](#technologies-used)
+    - [Development \& Runtime:](#development--runtime)
+    - [CI/CD Pipeline:](#cicd-pipeline)
+  - [Features](#features)
+  - [Screenshots](#screenshots)
+  - [Project Status](#project-status)
+  - [A Joke](#a-joke)
+  - [Room for Improvement](#room-for-improvement)
+  - [Acknowledgements](#acknowledgements)
+  - [Contact](#contact)
 <!-- * [License](#license) -->
 
 <!-- PLACE BETWEEN SCREENSHOTS AND PROJECT STATUS WHEN IMPLEMENTING
@@ -97,8 +102,11 @@ Provide various use cases and code examples here.
 Project is: 🏗️ _in progress_
 
 Active Contributors: 
-  + [Coren Frankel](https://github.com/coren-frankel) (Full Stack Developer)
+![GitHub Contributors Image](https://contrib.rocks/image?repo=coren-frankel/LookAchoo)[Coren Frankel](https://github.com/coren-frankel)
 <!-- _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why. -->
+
+## A Joke
+![Jokes Card](https://readme-jokes.vercel.app/api)
 
 
 ## Room for Improvement
@@ -123,7 +131,7 @@ To do:
 - Thanks [dav1dmoore](https://github.com/dav1dmoore) for building me up, buttercup. (Just to let me down, and mess me around)
 
 ## Contact 
-![GitHub Contributors Image](https://contrib.rocks/image?repo=coren-frankel/LookAchoo)[Coren Frankel](https://linkedin.com/in/coren-frankel): feel free to [email me](mailto:coren.frankel@gmail.com)!
+[Coren Frankel](https://linkedin.com/in/coren-frankel): feel free to [email me](mailto:coren.frankel@gmail.com)!
 
 <!-- Optional -->
 <!-- ## License -->
