@@ -123,7 +123,7 @@ To do:
 - Thanks [dav1dmoore](https://github.com/dav1dmoore) for building me up, buttercup. (Just to let me down, and mess me around)
 
 ## Contact 
-+ [Coren Frankel](https://linkedin.com/in/coren-frankel): feel free to [email me](mailto:coren.frankel@gmail.com)!
+![GitHub Contributors Image](https://contrib.rocks/image?repo=coren-frankel/LookAchoo)[Coren Frankel](https://linkedin.com/in/coren-frankel): feel free to [email me](mailto:coren.frankel@gmail.com)!
 
 <!-- Optional -->
 <!-- ## License -->
