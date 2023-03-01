@@ -4,6 +4,9 @@ const { Sniffle } = require('../models/sniffle.model');
 const { getISOCode, countryName } = require('../modules/countryISO');
 
 
+module.exports.base = (req, res) => {//SERVER BASE TEST ROUTE
+    res.json({ message: "You have connected to the Look Achoo API" })
+}
 module.exports.index = (req, res) => {//SERVER TEST ROUTE
     res.json({ message: "Hello there! Are you lost?" })
 }
