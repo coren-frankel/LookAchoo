@@ -12,7 +12,7 @@ module.exports.index = (req, res) => {//SERVER TEST ROUTE
 }
 //POST SNIFFLE REQUEST
 module.exports.logNewSniffle = (req, res) => {
-    console.log("logNewSniffle enganged...")
+    // console.log("logNewSniffle enganged...")
     const options = {
         method: 'GET',
         url: 'https://weatherapi-com.p.rapidapi.com/ip.json',
