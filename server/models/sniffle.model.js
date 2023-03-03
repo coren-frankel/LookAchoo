@@ -35,7 +35,10 @@ const SniffleSchema = new mongoose.Schema({
         activeCases: {type: Number, required: false},
         caseRatio: {type: Number, required: false}
     },
-    createdAt: { type: Date, expires: 86400, default: Date.now }
+    // TTL (Time to live) expires property takes seconds, default now
+    // 86400 is one day
+    // 60480000 is 1 week
+    createdAt: { type: Date, expires: 60480000, default: Date.now }
 });
 
 module.exports.Sniffle = mongoose.model('Sniffle', SniffleSchema);
