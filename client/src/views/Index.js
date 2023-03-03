@@ -20,30 +20,40 @@ const BASE_URL = process.env.REACT_APP_SERVER_URL
     ? `${process.env.REACT_APP_SERVER_URL}/api`
     : 'http://localhost:8000/api';
 
+// ASSIGN RANDOM BACKGROUND MP4
 const vidList = [fern, autumn, wild, breeze, falls, beach, grass]
 const random = Math.floor(Math.random() * vidList.length)
 const bg = vidList[random]
 
 const Index = () => {
     const navigate = useNavigate();
-    const [userIP, setUserIP] = useState("");//HARDCODE IPS HERE FOR TESTING PURPOSES
-    const [clicked, setClicked] = useState(false)
-    const [sniffles, setSniffles] = useState([])
-    const [consent, setConsent] = useState(false)
+    const [userCoords, setUserCoords] = useState("");//HARDCODE COORDS HERE FOR TESTING PURPOSES
+    const [clicked, setClicked] = useState(false);
+    const [sniffles, setSniffles] = useState([]);
+    const getCoords = () => {
+        navigator.geolocation ?
+            navigator.geolocation.getCurrentPosition(p =>
+                // on success
+                setUserCoords(`${p.coords.latitude.toFixed(4)},${p.coords.longitude.toFixed(4)}`),
+                // on error
+                null,
+                // Options
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            ) :
+            window.alert("Geolocation is not supported on this browser");
+    }
     useEffect(() => {//RETRIEVE USER IP ADDRESS ON LOAD
+        getCoords()
         const fetchData = async => {
             try {
-                axios.all([//MULTIPLE CALLS AT ONCE! COOL UPGRADE!
-                    axios.get('https://api64.ipify.org?format=json'),//IP4 & IP6 IP ADDRESS RETRIEVAL
-                    axios.get(`${BASE_URL}/sniffle/random`)
-                ]).then(
-                    axios.spread((ip4, res) => {
-                        setUserIP(ip4.data.ip)//COMMENT OUT FOR TESTING PURPOSES
-                        // console.log(ip4.data.ip)
-                        setSniffles(res.data)
-                        // console.log(res.data)
-                    })
-                )
+                axios.get(`${BASE_URL}/sniffle/random`)
+                    .then(res => setSniffles(res.data)
+                    )
+
             } catch (err) {
                 console.log('Sugar, we\'re goin down swingin')
                 const errorResponse = err.response.data.errors;
@@ -55,26 +65,27 @@ const Index = () => {
         }
         fetchData(1)
     }, [])
-    const getLocation = () => {
-        clicked ? null ://LIMIT OVERCLICKING WHILE PROCESSING REQUEST
-            setClicked(true)
-        userIP ?
-            axios.post(`${BASE_URL}/sniffle/new`, { ip: userIP })
-                .then(newSniffle => navigate(`/display/${newSniffle.data._id}`))
-                .catch(err => {
-                    console.log(err)
-                })
-            : window.alert("No IP Address, no workee...")
+    // IF THE BUTTON IS CLICKED W/O COORDINATES, RELOAD THE PAGE AFTER 5 SECONDS
+    useEffect(()=> {
+        clicked && !userCoords ? setTimeout(()=> window.location.reload(), 5000) : null
+    }, [clicked])
+    const getConditions = () => {
+        //LIMIT OVERCLICKING WHILE PROCESSING REQUEST
+        clicked ? null : setClicked(true)
+        userCoords ? axios.post(`${BASE_URL}/sniffle/new`, { coords: userCoords })
+            .then(newSniffle => navigate(`/display/${newSniffle.data._id}`))
+            .catch(err => console.log(err)) : 
+                window.alert("In order for LookAchoo to find you, we'll need your permission!")
     }
     return (
         <>
-                {/* VIDEO BACKGROUND */}
-            { bg && 
-            <video playsInline autoPlay muted loop id='myVid'>
-                <source src={bg} type='video/mp4' />
-            </video>
+            {/* VIDEO BACKGROUND */}
+            {bg &&
+                <video playsInline autoPlay muted loop id='myVid'>
+                    <source src={bg} type='video/mp4' />
+                </video>
             }
-            <Header info={false}/>
+            <Header info={false} />
             <Box sx={{ height: '70vh' }} >
                 <Typography bgcolor={"#95bf74"} color={"#283f3b"} sx={{ display: 'inline-block', borderRadius: '20px', p: 1 }}>
                     "Sneezes manifest from many causes and almost always from noses." - Unknown
@@ -87,15 +98,33 @@ const Index = () => {
             </Box>
             <Box sx={{ height: '20vh' }}>
                 <Paper elevation={4} sx={{ display: 'inline-block', backgroundColor: "#556f44" }}>
-                    <Typography variant="caption" color={'#99ddc8'}>
+                    {/* <Typography variant="caption" color={'#99ddc8'}>
                         **sneeze to discover what may be tickling your nose locally**
-                    </Typography><br />
+                    </Typography><br /> */}
                 </Paper>
                 <br />
-                <Button variant="contained" size="large" style={{ margin: "1rem", backgroundColor: '#659b5e', color: '#283f3b',  border: 'solid 2px' }} onClick={getLocation}>{clicked ? <CircularProgress sx={{ color: "#99ddc8" }} /> : "*achoo* **click here** *achoo*"}</Button>
+                <Button
+                    variant="contained"
+                    size="large"
+                    style={{ margin: '1rem', backgroundColor: '#99ddc8', color: '#283f3b', border: 'solid 2px', borderRadius: '50px' }}
+                    onClick={getConditions}
+                >
+                    what's in the air near me?
+                    {clicked &&
+                        <CircularProgress
+                            size={28}
+                            sx={{
+                                color: "#283f3b",
+                                position: 'absolute',
+                                bottom: '20%',
+                                right: '45%'
+                            }}
+                        />
+                    }
+                </Button>
             </Box>
-            <Disclaimer userIP={userIP} approved={consent}/>
-            <Footer/>
+            <Disclaimer userCoords={userCoords} />
+            <Footer />
         </>
     )
 
