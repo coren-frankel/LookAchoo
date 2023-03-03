@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {
     Dialog, DialogActions, DialogTitle, 
     DialogContent, DialogContentText,
-    Slide, Button, Typography
+    Slide, Button
 } from '@mui/material'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
