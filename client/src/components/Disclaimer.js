@@ -7,23 +7,24 @@ import {
 } from '@mui/material'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <Slide direction="down" ref={ref} {...props} />;
 });
 const Disclaimer = (props) => {
-    const { userIP } = props;
+    const { userCoords } = props;
     const [accepted, setAccepted] = useState(false);
     const [open, setOpen] = useState(!accepted ? true : false)
     const navigate = useNavigate();
+    // ON LOAD SEARCH SESSION FOR PREVIOUS 'consent'
     useEffect(() => {
-        if (window.sessionStorage.getItem('cookies')) {
+        if (window.sessionStorage.getItem('consent')) {
             setAccepted(true);
             setOpen(false);
         }
     }, []);
     function acceptPolicy() {
-        sessionStorage.setItem('cookies', true);
+        sessionStorage.setItem('consent', true);
         setAccepted(true);
-    }
+    };
     const handleYesClose = () => {
         acceptPolicy()
         setOpen(false);
@@ -44,13 +45,13 @@ const Disclaimer = (props) => {
                 <DialogTitle>{"Use LookAchoo location service?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description" align='center'>
-                        {userIP ? `Your Public IP address is: ${userIP}` : "Fetching IP Address..."}<br/>
-                        LookAchoo uses the opensource and privacy-oriented <a href="https://www.ipify.org/" target="_blank">ipify</a> to attain this.
-                        Your IP address will <Typography variant='button' style={{textDecoration: 'underline', fontWeight: '900'}}>not</Typography> be saved.
-                        Through IP Geolocation LookAchoo leverages several services in tandem to consolidate air quality, weather, and covid data meant to augment your context awareness regarding what's tickling your nose right now.
+                        {userCoords ? `Your coordinates are: ${userCoords}` : "Awaiting permission to fetch user coordinates..."}<br/>
+                        LookAchoo utilizes your browser's geolocation API to leverage several services in tandem. It consolidates air quality, weather, and covid data meant to augment your context awareness regarding what's tickling your nose right now.
                     </DialogContentText>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions >
+                    {/* Style changes to add a 3rd option button */}
+                    {/* style={{display: "flex", justifyContent: "space-between"}} */}
                     <Button variant="outlined" color="warning" onClick={handleNoClose}>No, I need more information</Button>
                     <Button variant="outlined" color="success" onClick={handleYesClose}>Yeah, alright</Button>
                 </DialogActions>
