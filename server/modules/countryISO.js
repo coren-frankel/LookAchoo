@@ -236,6 +236,8 @@ function getISOCode(country) {
         "United States Minor Outlying Islands": "UMI",
         "Uruguay": "URY",
         "United States": "USA",
+        "United States of America": "USA",
+        "USA": "USA",
         "Uzbekistan": "UZB",
         "Vatican City": "VAT",
         "St Vincent and Grenadines": "VCT",
