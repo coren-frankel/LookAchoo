@@ -15,16 +15,16 @@ module.exports.logNewSniffle = (req, res) => {
     // console.log("logNewSniffle enganged...")
     const options = {
         method: 'GET',
-        url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-        params: { q: req.body.coords },
+        url: 'https://weatherapi-com.p.rapidapi.com/ip.json',
+        params: { q: req.body.ip },
         headers: {
             'X-RapidAPI-Key': process.env.WEATHER_API_KEY,
             'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
         }
     };//RETRIEVE LOCATION DATA FROM IP ADDRESS
     axios.request(options).then(resp => {
-        // console.log(resp.data)
-        const { lat, lon, region, name, country, localtime } = resp.data.location;
+        console.log(resp.data)
+        const { lat, lon, region, city, country_name, localtime, country_code } = resp.data;
         // console.log(`Lattitude: ${lat} Longitude: ${lon}`)
         const fetchData = async => {
             try {//TOMORROW PARAMS & SETTINGS
@@ -44,48 +44,35 @@ module.exports.logNewSniffle = (req, res) => {
                     }
                 }
                 //VACCOVID PARAMS & SETTINGS & SUPPLEMENTAL CONVERSION FUNCTIONS
-                let iso = getISOCode(country)
-                let country_name = countryName(iso, country)
-                const options2 = {
+                let iso = getISOCode(country_name)
+                let country = countryName(iso, country_name)
+                const optis = {
                     method: 'GET',
-                    url: `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/${country_name}/${iso}`,
+                    url: `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/${country}/${iso}`,
                     headers: {
                         'X-RapidAPI-Key': process.env.VACCOVID_API_KEY,
                         'X-RapidAPI-Host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com'
                     }
                 };
-                const options3 = {
-                    method: 'GET',
-                    url: `https://codesofcountry.p.rapidapi.com/query/${country_name}`,
-                    headers: {
-                        'X-RapidAPI-Key': process.env.WEATHER_API_KEY,
-                        'X-RapidAPI-Host': 'codesofcountry.p.rapidapi.com'
-                    }
-                };
-                // console.log(`Hey LOOK AT ME! this is the country name! ${country}`)
                 axios.all([
                     axios.get(`https://api.tomorrow.io/v4/timelines?location=${location}&fields=${fields}&units=${units}`, opts),
-                    axios.request(options2),
-                    axios.request(options3)
+                    axios.request(optis)
                 ]).then(
-                    axios.spread((resp1, resp2, resp3) => {
+                    axios.spread((resp1, resp2) => {
                         //WEATHER CONDITIONS
                         const cond = resp1.data.data.timelines[0].intervals[0].values//WEATHER CONDITIONS
-                        // console.log(resp1.data.data.timelines[0].intervals[0].values)
+                        console.log(resp1.data.data.timelines[0].intervals[0].values)
                         //COVID STATISTICS
                         const inf = resp2.data[0]
-                        // console.log(resp2.data[0])
-                        //ISO 2 Country Code
-                        const iso2 = resp3.data.result[0].iso_alpha_two
-                        // console.log(resp3.data.result[0].iso_alpha_two)
+                        console.log(resp2.data[0])
                         Sniffle.create({
                             location: {
-                                city: name,
+                                city: city,
                                 region: region,
                                 lat: lat,
                                 lon: lon,
-                                country: country,
-                                iso2: iso2,
+                                country: country_name,
+                                iso2: country_code,
                                 localtime: localtime
                             },
                             tickles: {
